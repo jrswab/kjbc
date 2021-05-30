@@ -23,41 +23,45 @@ func init() {
 func main() {
 	flag.Parse()
 	if usage || len(os.Args) <= 2 {
-		find := "kjbc [-l] find word - to find the entry number for an English word"
-		getEntry := "kjbc [-l] get number - to return the information for a given entry number."
+		word := "kjbc [-l] word {word} - to find the entry number for an English word"
+		getEntry := "kjbc [-l] entry {number} - to return the information for a given entry number."
 		moreHelp := "Run 'kjbc -help' for options."
 
-		msg := fmt.Sprintf("%s\n%s\n\n%s", find, getEntry, moreHelp)
+		msg := fmt.Sprintf("%s\n%s\n\n%s", word, getEntry, moreHelp)
 		fmt.Println(msg)
 		return
 	}
 
-	comm := os.Args[1]
-	term := os.Args[2]
+	comm := os.Args[len(os.Args)-2]
+	term := os.Args[len(os.Args)-1]
 
-	if len(os.Args) == 5 {
-		comm = os.Args[3]
-		term = os.Args[4]
-	}
-
-	if comm == "find" {
+	if comm == "word" {
 		data, err := cons.Find(lang, term)
 		if err != nil {
 			fmt.Println(err)
 		}
 
-		for _, v := range *data {
-			fmt.Printf("Entry Number: %s\n", v.Number)
+		for i, v := range *data {
+			if i > 0 {
+				fmt.Printf("\nEntry Number: %s\n", v.Number)
+			} else {
+				fmt.Printf("Entry Number: %s\n", v.Number)
+			}
+
 			if showVerses {
 				fmt.Printf("In Verses: ")
-				for _, w := range v.Verses {
-					fmt.Printf("%s, ", w)
+				for j, w := range v.Verses {
+					if j == len(v.Verses)-1 {
+						fmt.Printf("%s\n", w)
+					} else {
+						fmt.Printf("%s, ", w)
+					}
 				}
 			}
 		}
 	}
 
-	if comm == "get" {
+	if comm == "entry" {
 		output, err := dicts.Get(lang, term)
 		if err != nil {
 			fmt.Println(err)
