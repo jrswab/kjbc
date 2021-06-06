@@ -31,7 +31,7 @@ func marshalHebrew() *Concordance {
 	return hebrewCon
 }
 
-func Find(lang, word string) (*[]Reference, error) {
+func Find(lang, word string) ([]Reference, error) {
 	var con *Concordance
 	if lang == "greek" {
 		con = marshalGreek()
@@ -52,5 +52,5 @@ func Find(lang, word string) (*[]Reference, error) {
 	if refs == nil {
 		return nil, fmt.Errorf("could not find '%s', in the concordance", word)
 	}
-	return refs, nil
+	return *refs, nil
 }

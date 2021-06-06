@@ -26,20 +26,19 @@ func getEntryNumber(term string) {
 		fmt.Println(err)
 	}
 
-	if len(*data) == 1 {
-		for _, v := range *data {
+	// Output word, entry, and definition when only one entry is listed
+	if len(data) == 1 {
+		for _, v := range data {
 			fmt.Printf("One entry found for \"%s\"...\n", term)
 			fmt.Printf("Entry Number: %s\n", v.Number)
 			getDefinition(v.Number)
 		}
 	}
 
-	for i, v := range *data {
-		if i > 0 {
-			fmt.Printf("\nEntry Number: %s\n", v.Number)
-		} else {
-			fmt.Printf("Entry Number: %s\n", v.Number)
-		}
+	fmt.Printf("\"%s\" contains more than one entry number.\n", term)
+	fmt.Println("Use -v to see associated verses for each entry number.")
+	for _, v := range data {
+		fmt.Printf("\nEntry Number: %s\n", v.Number)
 
 		if showVerses {
 			fmt.Printf("In Verses: ")
