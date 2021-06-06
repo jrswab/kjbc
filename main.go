@@ -15,7 +15,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&lang, "l", "greek", "The target language to search within. Options are Hebrew or Greek.")
+	flag.StringVar(&lang, "l", "greek", "The target language to search within. Options are \"hebrew\" or \"greek\".")
 	flag.BoolVar(&showVerses, "v", false, "Display the verses that correspond with the concordance entry number.")
 	flag.BoolVar(&usage, "u", false, "Display the usage information.")
 }
@@ -64,11 +64,12 @@ func getDefinition(term string) {
 func main() {
 	flag.Parse()
 	if usage || len(os.Args) <= 2 {
-		word := "kjbc [-l] word {word} - to find the entry number for an English word"
-		getEntry := "kjbc [-l] entry {number} - to return the information for a given entry number."
+		word := "kjbc [options] word {word} - to find the entry number for an English word."
+		oneWord := "  If only one entry exists for a word, kjbc will return the entry definition as well."
+		getEntry := "kjbc [options] entry {number} - to return the information for a given entry number."
 		moreHelp := "Run 'kjbc -help' for options."
 
-		msg := fmt.Sprintf("%s\n%s\n\n%s", word, getEntry, moreHelp)
+		msg := fmt.Sprintf("%s\n%s\n\n%s\n\n%s", word, oneWord, getEntry, moreHelp)
 		fmt.Println(msg)
 		return
 	}
