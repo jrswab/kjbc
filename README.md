@@ -19,9 +19,6 @@ This will return the information for a given entry number.
 
 `-help` Display the list of options. Defaults to false when omitted.
 
-## Support The Project:
-There are several ways to support this project. Visit [swab.dev/support](https://swab.dev/support) for more information.
-
 ---
 
 P.S. - I did not type up the entire Strong's concordance. That was already done and the text files may be found at http://www.ebibleconcordances.com/
