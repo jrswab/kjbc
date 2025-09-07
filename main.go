@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"swab.dev/kjbc/cons"
-	"swab.dev/kjbc/dicts"
+	"github.com/jrswab/kjbc/cons"
+	"github.com/jrswab/kjbc/dicts"
 )
 
 var (

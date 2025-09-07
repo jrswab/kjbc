@@ -3,6 +3,8 @@ package dicts
 import (
 	"encoding/json"
 	"fmt"
+
+	lex "github.com/jrswab/kjbc/lexicons"
 )
 
 type Dictionary map[string]Entry
@@ -15,13 +17,13 @@ type Entry struct {
 
 func marshalGreek() Dictionary {
 	greekDict := make(Dictionary)
-	json.Unmarshal([]byte(greek), &greekDict)
+	json.Unmarshal([]byte(lex.GreekDict), &greekDict)
 	return greekDict
 }
 
 func marshalHebrew() Dictionary {
 	hebrewDict := make(Dictionary)
-	json.Unmarshal([]byte(hebrew), &hebrewDict)
+	json.Unmarshal([]byte(lex.HebrewDict), &hebrewDict)
 	return hebrewDict
 }
 

@@ -1,3 +1,3 @@
-module swab.dev/kjbc
+module github.com/jrswab/kjbc
 
-go 1.16
+go 1.24

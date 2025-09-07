@@ -3,6 +3,8 @@ package cons
 import (
 	"encoding/json"
 	"fmt"
+
+	lex "github.com/jrswab/kjbc/lexicons"
 )
 
 type Concordance struct {
@@ -21,13 +23,13 @@ type Reference struct {
 
 func marshalGreek() *Concordance {
 	greekCon := new(Concordance)
-	json.Unmarshal([]byte(greek), &greekCon)
+	json.Unmarshal([]byte(lex.GreekCon), &greekCon)
 	return greekCon
 }
 
 func marshalHebrew() *Concordance {
 	hebrewCon := new(Concordance)
-	json.Unmarshal([]byte(hebrew), &hebrewCon)
+	json.Unmarshal([]byte(lex.HebrewCon), &hebrewCon)
 	return hebrewCon
 }
 
